@@ -3,13 +3,29 @@ const toDoInput = toDoForm.querySelector("input");
 const toDoList = document.querySelector(".js-toDoList");
 
 const TODOS_LS = "todos";
-const toDos = [];
+let toDos = [];
 
-function deleteToDo(event) {}
+function deleteToDo(event) {
+  // target은 button을 계속 출력한다.
+  const btn = event.target;
+
+  // parentNode는 부모 요소를 찾아서 출력한다.
+  const li = btn.parentNode;
+
+  //자식 요소를 삭제
+  toDoList.removeChild(li);
+
+  // filter 함수는 ture인 아이템들만 가지고 새로운 array를 만든다.
+  const cleanToDos = toDos.filter(function (toDo) {
+    // li의 id가 string이기 때문에 string을 number로 바꿀 수 있는 parseInt를 사용해 li의 id를 number로 바꾼다.
+    return toDo.id !== parseInt(li.id);
+  });
+  // toDos에 filter를 통해 나온 cleanToDos를 할당
+  toDos = cleanToDos;
+  saveToDos();
+}
 
 function saveToDos() {
-  // localStorage에는 js의 data를 저장할 수 없다. only string만 가능하다.
-  // JSON.stringify는 js의 object를 string으로 바꿔준다.
   localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 }
 
@@ -43,12 +59,7 @@ function handleSubmit(event) {
 function loadToDos() {
   const loadedToDos = localStorage.getItem(TODOS_LS);
   if (loadedToDos !== null) {
-    // loadedToDos를 출력하면 sting으로 나온다. 이걸 JSON.parse 메소드로 object로 바꿔준다.
     const parsedToDos = JSON.parse(loadedToDos);
-
-    // forEach는 배열에 사용할 수 있는 메소드로 기본적으로 함수를 실행시킨다.
-    // array에 담겨 있는 것들을 각각 한번씩 함수를 실행시켜 준다.
-    // forEach 안에 함수를 넣을 수도 있고 외부에서 함수를 만들고 함수명을 넣을 수도 있다.
     parsedToDos.forEach(function (toDo) {
       paintToDo(toDo.text);
     });

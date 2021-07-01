@@ -4,29 +4,34 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>clock</title>
-    <link rel="stylesheet" href="index.css" />
+    <title>What do you have to do?</title>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="js-clock">
-      <h1 class="js-title"></h1>
+    <div class="container">
+      <div class="js-clock">
+        <h1 class="js-title"></h1>
+      </div>
+      <form class="js-form form">
+        <input
+          class="js-input"
+          type="text"
+          placeholder="what is your name?"
+          name=""
+          id=""
+        />
+      </form>
+      <h4 class="js-greetings greetings"></h4>
+      <form action="" class="js-toDoForm">
+        <input type="text" placeholder="Write a to do" />
+      </form>
+      <ul class="js-toDoList"></ul>
+      <span class="js-weather"></span>
     </div>
-    <form class="js-form form">
-      <input
-        class="js-input"
-        type="text"
-        placeholder="what is your name?"
-        name=""
-        id=""
-      />
-    </form>
-    <h4 class="js-greetings greetings"></h4>
-    <form action="" class="js-toDoForm">
-      <input type="text" placeholder="Write a to do" />
-    </form>
-    <ul class="js-toDoList"></ul>
     <script src="clock.js"></script>
     <script src="greeting.js"></script>
     <script src="todo.js"></script>
+    <script src="bg.js"></script>
+    <script src="weather.js"></script>
   </body>
 </html>
